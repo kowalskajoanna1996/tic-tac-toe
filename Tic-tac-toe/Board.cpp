@@ -9,7 +9,7 @@ Board::Board() {
 	Board::makeBoard();
 }
 
-unsigned short Board::getSizeBoard() {//zwraca rozmiar planszy
+unsigned short Board::getSizeBoard() {
 	return Board::sizeBoard;
 }
 
@@ -21,19 +21,19 @@ unsigned short Board::getColumn() {
 	return Board::column;
 }
 
-char Board::getItem(unsigned short row, unsigned short column) { //zwraca element tablicy
+char Board::getItem(unsigned short row, unsigned short column) {
 	return Board::myBoard[row][column]; 
 }
 
-void Board::makeBoard() {  //wywolywana tylko raz
+void Board::makeBoard() {
 	std::cout << "Set size of board: ";
 	std::cin >> Board::sizeBoard;
 
-	Board::myBoard = new char*[Board::sizeBoard];	//tworzenie planszy
+	Board::myBoard = new char*[Board::sizeBoard];
 	for (int i = 0; i < sizeBoard; ++i)
 		Board::myBoard[i] = new char[Board::sizeBoard];
 
-	for (int i = 0; i < Board::sizeBoard; i++) {	//wypelnienie spacjami
+	for (int i = 0; i < Board::sizeBoard; i++) {
 		for (int j = 0; j < Board::sizeBoard; j++) {
 			Board::myBoard[i][j] = ' ';
 		}
@@ -42,11 +42,11 @@ void Board::makeBoard() {  //wywolywana tylko raz
 	Board::round();
 }
 
-void Board::drawBoard() {	//rysuje plansze i wypelnia ja obecnymi wartosciami
+void Board::drawBoard() {
 	char letter = 'A';
 	int j = 0;
 
-	for (int i = 0; i < sizeBoard; i++)//rysowanie planszy
+	for (int i = 0; i < sizeBoard; i++)
 		std::cout << "   " << char(letter + i);
 
 	for (int i = 0; i < sizeBoard; i++) {
@@ -62,14 +62,14 @@ void Board::drawBoard() {	//rysuje plansze i wypelnia ja obecnymi wartosciami
 	}
 }
 
-void Board::setSignToArrow(unsigned short row, unsigned short column) {//wpisywanie ruchu do tablicy
+void Board::setSignToArrow(unsigned short row, unsigned short column) {
 	if(logic.isFirstPlayer())
 		Board::myBoard[row][column] = Board::player1.getSign();
 	else
 		Board::myBoard[row][column] = Board::player2.getSign();
 }
 
-void Board::round() { // rozegranie rundy
+void Board::round() {
 	while (true) {
 		if (logic.isEndOfGame(Board::row, Board::column, Board::getSizeBoard(), Board::myBoard ))
 			break;
@@ -79,7 +79,7 @@ void Board::round() { // rozegranie rundy
 	getchar();
 }
 
-void Board::move() { //wpisanie pozycji gdzie ma byc ruch
+void Board::move() { 
 	std::cout << "\nEnter the row number: ";
 	std::cin >> Board::row;
 	std::cout << "Enter the column number: ";

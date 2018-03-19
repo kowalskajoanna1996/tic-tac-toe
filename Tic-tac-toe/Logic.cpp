@@ -4,13 +4,13 @@
 
 Logic::Logic() {}
 
-bool Logic::isEndOfGame(unsigned short row, unsigned short column, unsigned short length, char **boardArray) { //koniec gry
+bool Logic::isEndOfGame(unsigned short row, unsigned short column, unsigned short length, char **boardArray) { 
 	if (!row && !column)
 		return false;
 
-	unsigned short horizontal = 0, vertical = 0, diagonal = 0, diagonal1 = 0;
+	unsigned short horizontal = 0, vertical = 0, diagonal = 0, oppositeDiagonal = 0;
 
-	for (unsigned short i = 0; i < length; i++) { // w poziomie
+	for (unsigned short i = 0; i < length; i++) { 
 		if (boardArray[row][i] == boardArray[row][column]) {
 			horizontal++;
 			if (horizontal == length)
@@ -29,10 +29,9 @@ bool Logic::isEndOfGame(unsigned short row, unsigned short column, unsigned shor
 				return true; 
 		}
 
-		if (row+column == length&&boardArray[i][length-i] == boardArray[row][column]) {
-			diagonal1++;
-			std:: cout << 'dupa';
-			if (diagonal1 == length)
+		if (row+column == length-1&&boardArray[i][length-i-1] == boardArray[row][column]) {
+			oppositeDiagonal++;
+			if (oppositeDiagonal == length)
 				return true;
 		}
 	}
